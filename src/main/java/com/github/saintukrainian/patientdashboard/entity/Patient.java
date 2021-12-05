@@ -1,4 +1,4 @@
-package com.github.saintukrainian.patientdashboard.model;
+package com.github.saintukrainian.patientdashboard.entity;
 
 import java.util.Date;
 import java.util.Objects;
@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,41 +15,31 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
 
-@Entity(name = "lab_results")
+@Entity(name = "patient")
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class LabResults {
+public class Patient {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "results_id")
-  private Long resultsId;
+  @Column(name = "patient_id")
+  private Long patientId;
 
-  @Column(name = "lab_date")
-  private Date labDate;
+  @Column(name = "first_name")
+  private String firstName;
 
-  @Column(name = "albumin")
-  private double albumin;
+  @Column(name = "last_name")
+  private String lastName;
 
-  @Column(name = "fluid")
-  private double fluid;
+  @Column(name = "address")
+  private String address;
 
-  @Column(name = "calcium")
-  private double calcium;
-
-  @Column(name = "blood_flow_rate")
-  private double bloodFlowRate;
-
-  @Column(name = "hemoglobin")
-  private double hemoglobin;
-
-  @ManyToOne
-  @JoinColumn(name = "patient_id")
-  private Patient patient;
+  @Column(name = "date_of_birth")
+  private Date dateOfBirth;
 
   @Override
   public boolean equals(Object o) {
@@ -61,8 +49,8 @@ public class LabResults {
     if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) {
       return false;
     }
-    LabResults that = (LabResults) o;
-    return resultsId != null && Objects.equals(resultsId, that.resultsId);
+    Patient patient = (Patient) o;
+    return patientId != null && Objects.equals(patientId, patient.patientId);
   }
 
   @Override

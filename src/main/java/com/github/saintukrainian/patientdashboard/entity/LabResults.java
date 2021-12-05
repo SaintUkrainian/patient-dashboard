@@ -1,4 +1,4 @@
-package com.github.saintukrainian.patientdashboard.model;
+package com.github.saintukrainian.patientdashboard.entity;
 
 import java.util.Date;
 import java.util.Objects;
@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,31 +17,41 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
 
-@Entity(name = "patient")
+@Entity(name = "lab_results")
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Patient {
+public class LabResults {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "patient_id")
-  private Long patientId;
+  @Column(name = "results_id")
+  private Long resultsId;
 
-  @Column(name = "first_name")
-  private String firstName;
+  @Column(name = "lab_date")
+  private Date labDate;
 
-  @Column(name = "last_name")
-  private String lastName;
+  @Column(name = "albumin")
+  private float albumin;
 
-  @Column(name = "address")
-  private String address;
+  @Column(name = "fluid")
+  private float fluid;
 
-  @Column(name = "date_of_birth")
-  private Date dateOfBirth;
+  @Column(name = "calcium")
+  private float calcium;
+
+  @Column(name = "blood_flow_rate")
+  private float bloodFlowRate;
+
+  @Column(name = "hemoglobin")
+  private float hemoglobin;
+
+  @ManyToOne
+  @JoinColumn(name = "patient_id")
+  private Patient patient;
 
   @Override
   public boolean equals(Object o) {
@@ -49,8 +61,8 @@ public class Patient {
     if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) {
       return false;
     }
-    Patient patient = (Patient) o;
-    return patientId != null && Objects.equals(patientId, patient.patientId);
+    LabResults that = (LabResults) o;
+    return resultsId != null && Objects.equals(resultsId, that.resultsId);
   }
 
   @Override

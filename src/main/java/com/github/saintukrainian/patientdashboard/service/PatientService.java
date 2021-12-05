@@ -1,6 +1,6 @@
 package com.github.saintukrainian.patientdashboard.service;
 
-import com.github.saintukrainian.patientdashboard.model.Patient;
+import com.github.saintukrainian.patientdashboard.entity.Patient;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
