@@ -1,11 +1,28 @@
 package com.github.saintukrainian.patientdashboard.service;
 
 import com.github.saintukrainian.patientdashboard.entity.LabResults;
+import com.github.saintukrainian.patientdashboard.repository.LabResultsRepository;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
-public interface LabResultsService {
+@Service
+@RequiredArgsConstructor
+public class LabResultsService {
 
-  List<LabResults> findLabResultsByPatientId(Long patientId);
+  private final LabResultsRepository labResultsRepository;
 
-  void deleteLabResultsById(Long labsId);
+  public List<LabResults> findLabResultsByPatientId(Long patientId) {
+    if (patientId == null) {
+      throw new IllegalArgumentException("Patient id cannot be null!");
+    }
+    return labResultsRepository.findLabResultsByPatientId(patientId);
+  }
+
+  public void removeLabResultsById(Long labsId) {
+    if (labsId == null) {
+      throw new IllegalArgumentException("Labs Id cannot be null!");
+    }
+    labResultsRepository.removeLabResultsById(labsId);
+  }
 }

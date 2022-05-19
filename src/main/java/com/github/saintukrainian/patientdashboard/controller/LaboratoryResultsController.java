@@ -2,6 +2,7 @@ package com.github.saintukrainian.patientdashboard.controller;
 
 import static java.util.Objects.isNull;
 
+import com.github.saintukrainian.patientdashboard.repository.LabResultsRepository;
 import com.github.saintukrainian.patientdashboard.service.LabResultsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,7 @@ public class LaboratoryResultsController {
 
   @GetMapping("/remove-labs")
   public String removeLabResults(@RequestParam Long labsId, @RequestParam Long patientId) {
-    labResultsService.deleteLabResultsById(labsId);
+    labResultsService.removeLabResultsById(labsId);
     return "redirect:/lab-results?patientId=" + patientId;
   }
 }
