@@ -25,4 +25,18 @@ public class LabResultsService {
     }
     labResultsRepository.removeLabResultsById(labsId);
   }
+
+  public LabResults findLabResultsByLabResultsId(Long resultsId) {
+    if (resultsId == null) {
+      throw new IllegalArgumentException("Lab Results Id cannot be null!");
+    }
+    return labResultsRepository.findLabResultsByLabResultsId(resultsId);
+  }
+
+  public void updateLabResults(LabResults editedResults) {
+    if (editedResults == null) {
+      throw new IllegalArgumentException("Lab Results cannot be null!");
+    }
+    labResultsRepository.updateLabResults(editedResults);
+  }
 }

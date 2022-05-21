@@ -15,7 +15,7 @@ class LabResultsServiceTest {
   private LabResultsService labResultsService;
 
   @Test
-  void shouldFetchLabResultsById() {
+  void shouldFetchLabResultsByPatientId() {
     // given
     long patientId = 1L;
 
@@ -24,5 +24,20 @@ class LabResultsServiceTest {
 
     // then
     assertThat(labResultsByPatientId).isNotEmpty();
+  }
+
+  @Test
+  void shouldFetchLabResultsByLabResultsId() {
+    // given
+    long labResultsId = 1L;
+
+    // when
+    LabResults labResultsByLabResultsId = labResultsService.findLabResultsByLabResultsId(
+        labResultsId);
+
+    // then
+    assertThat(labResultsByLabResultsId)
+        .isNotNull()
+        .hasNoNullFieldsOrProperties();
   }
 }

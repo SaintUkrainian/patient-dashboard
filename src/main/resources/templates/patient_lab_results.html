@@ -47,6 +47,9 @@
     <td th:text="${labResult.hemoglobin}"></td>
     <td th:text="${labResult.calcium}"></td>
     <td sec:authorize="hasRole('ADMIN')"><a
+        th:href="@{/edit-labs(labsId=${labResult.resultsId}, patientId=${patientId})}"
+        class="btn btn-warning fs-8">Edit</a>
+    <td sec:authorize="hasRole('ADMIN')"><a
         th:href="@{/remove-labs(labsId=${labResult.resultsId}, patientId=${labResult.patient.patientId})}"
         class="btn btn-danger fs-8"
         onclick="if(!confirm('Are you sure?')){return false
