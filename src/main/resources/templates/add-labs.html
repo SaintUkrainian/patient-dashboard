@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossorigin="anonymous">
+    <title>Add Lab Results</title>
+</head>
+<body>
+<div class="d-flex justify-content-center bg-primary text-white">
+    <h1>
+        Patient Dashboard
+    </h1>
+</div>
+<div class="d-flex justify-content-between bg-primary text-white p-1">
+    <h5 class="badge bg-light text-wrap text-dark fs-6 m-0" style="align-self: center">Authenticated
+        as
+        <span
+                th:text="${#authorization.getAuthentication().getName()}"></span></h5>
+    <a th:href="@{/logout}" class="btn btn-warning">Logout</a>
+</div>
+
+<form class="container" th:object="${labResults}" th:action="@{/add-labs(patientId=${patientId})}" th:method="post">
+    <input type="hidden" th:field="*{resultsId}"/>
+    <div class="d-flex flex-column align-items-center mb-3">
+        <label>
+            Albumin
+            <input type="number" step="0.1" th:field="*{albumin}" class="form-control mx-auto"
+                   th:classappend="${#fields.hasErrors('albumin')} ? 'border-danger' : null"/>
+        </label>
+        <p th:if="${#fields.hasErrors('albumin')}" th:errorclass="text-danger"
+           th:errors="*{albumin}"></p>
+    </div>
+    <div class="d-flex flex-column align-items-center mb-3">
+        <label>
+            Fluid
+            <input type="number" step="0.1" th:field="*{fluid}" class="form-control mx-auto"
+                   th:classappend="${#fields.hasErrors('fluid')} ? 'border-danger' : null"/>
+        </label>
+        <p th:if="${#fields.hasErrors('fluid')}" th:errorclass="text-danger" th:errors="*{fluid}"></p>
+    </div>
+    <div class="d-flex flex-column align-items-center mb-3">
+        <label>
+            Calcium
+            <input type="number" step="0.1" th:field="*{calcium}" class="form-control mx-auto"
+                   th:classappend="${#fields.hasErrors('calcium')} ? 'border-danger' : null"/>
+        </label>
+        <p th:if="${#fields.hasErrors('calcium')}" th:errorclass="text-danger"
+           th:errors="*{calcium}"></p>
+    </div>
+    <div class="d-flex flex-column align-items-center mb-3">
+        <label>
+            Blood Flow Rate
+            <input type="number" step="0.1" th:field="*{bloodFlowRate}" class="form-control mx-auto"
+                   th:classappend="${#fields.hasErrors('bloodFlowRate')} ? 'border-danger' : null"/>
+        </label>
+        <p th:if="${#fields.hasErrors('bloodFlowRate')}" th:errorclass="text-danger"
+           th:errors="*{bloodFlowRate}"></p>
+    </div>
+    <div class="d-flex flex-column align-items-center mb-3">
+        <label>
+            Hemoglobin
+            <input type="number" step="0.1" th:field="*{hemoglobin}" class="form-control mx-auto"
+                   th:classappend="${#fields.hasErrors('hemoglobin')} ? 'border-danger' : null"/>
+        </label>
+        <p th:if="${#fields.hasErrors('hemoglobin')}" th:errorclass="text-danger"
+           th:errors="*{hemoglobin}"></p>
+    </div>
+    <div class="d-flex justify-content-center">
+        <input type="submit" class="btn btn-primary" value="Create">
+    </div>
+</form>
+</body>
+</html>
