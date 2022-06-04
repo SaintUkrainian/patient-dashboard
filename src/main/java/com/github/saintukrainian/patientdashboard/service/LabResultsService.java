@@ -33,6 +33,13 @@ public class LabResultsService {
     return labResultsRepository.findLabResultsByLabResultsId(resultsId);
   }
 
+  public void createLabResults(LabResults newLabResults, Long patientId) {
+    if (newLabResults == null) {
+      throw new IllegalArgumentException("Lab Results cannot be null!");
+    }
+    labResultsRepository.createLabResults(newLabResults, patientId);
+  }
+
   public void updateLabResults(LabResults editedResults) {
     if (editedResults == null) {
       throw new IllegalArgumentException("Lab Results cannot be null!");

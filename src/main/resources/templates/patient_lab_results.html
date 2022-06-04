@@ -39,6 +39,9 @@
   </tr>
   </thead>
   <tbody>
+  <td sec:authorize="hasRole('ADMIN')"><a
+          th:href="@{/add-labs(patientId=${patientId})}"
+          class="btn btn-warning fs-8">Create</a></td>
   <tr th:each="labResult: ${labResults}">
     <td th:text="${#dates.format(labResult.labDate, 'dd/MM/yyyy h:mm a')}"></td>
     <td th:text="${labResult.albumin}"></td>
