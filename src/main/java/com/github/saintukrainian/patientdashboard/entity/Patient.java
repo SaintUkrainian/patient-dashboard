@@ -34,4 +34,8 @@ public class Patient {
 
   @Column(name = "date_of_birth")
   private Date dateOfBirth;
+
+  public String getFullName() {
+    return firstName + " " + lastName;
+  }
 }

@@ -1,6 +1,7 @@
 package com.github.saintukrainian.patientdashboard.service;
 
 import com.github.saintukrainian.patientdashboard.entity.LabResults;
+import com.github.saintukrainian.patientdashboard.model.KeyMinMaxValueDto;
 import com.github.saintukrainian.patientdashboard.repository.LabResultsRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -45,5 +46,9 @@ public class LabResultsService {
       throw new IllegalArgumentException("Lab Results cannot be null!");
     }
     labResultsRepository.updateLabResults(editedResults);
+  }
+
+  public List<LabResults> findLabResultsByParameters(KeyMinMaxValueDto keyValueDto) {
+    return labResultsRepository.findLabResultsByParameters(keyValueDto);
   }
 }

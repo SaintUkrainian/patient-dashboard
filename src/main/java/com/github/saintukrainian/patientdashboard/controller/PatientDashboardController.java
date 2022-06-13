@@ -12,7 +12,7 @@ public class PatientDashboardController {
 
   final PatientService patientService;
 
-  @GetMapping("/")
+  @GetMapping
   public String dashboard(Model model) {
     model.addAttribute("patients", patientService.findAllPatients());
     return "dashboard.html";

@@ -7,11 +7,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum LabAnalysis {
 
-  ALBUMIN("albumin"),
-  FLUID("fluid"),
-  CALCIUM ("calcium"),
-  BLOOD_FLOW_RATE ("bloodFlowRate"),
-  HEMOGLOBIN ("hemoglobin");
+  ALBUMIN("albumin", "ALBUMIN", "Albumin"),
+  FLUID("fluid", "FLUID", "Fluid"),
+  CALCIUM("calcium", "CALCIUM", "Calcium"),
+  BLOOD_FLOW_RATE("bloodFlowRate", "BLOOD_FLOW_RATE", "Blood Flow Rate"),
+  HEMOGLOBIN("hemoglobin", "HEMOGLOBIN", "Hemoglobin");
 
-  private final String resultName;
+  private final String parameterName;
+  private final String tableColumnName;
+  private final String displayName;
 }
