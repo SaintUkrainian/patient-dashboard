@@ -1,0 +1,31 @@
+# Application properties
+server:
+  port: 8080
+
+# Database properties
+spring:
+  application:
+    name: patient-dashboard
+  profiles:
+    default: env
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:postgresql://localhost:1337/patient-dashboard?useSSL=false&serverTimezone=UTC
+    username: postgres
+    password: 00zomifi
+---
+spring:
+  config:
+    activate:
+      on-profile: env
+  datasource:
+    url: jdbc:postgres://awrgrfchzybjed:1a9e50325783c9c392f352b387e6e605281535734f2f1cdd6b4b6b30712d0c75@ec2-52-214-23-110.eu-west-1.compute.amazonaws.com:5432/d9m0gliqoof7th?useSSL=false&serverTimezone=UTC
+    username: awrgrfchzybjed
+    password: 1a9e50325783c9c392f352b387e6e605281535734f2f1cdd6b4b6b30712d0c75
+
+
+
